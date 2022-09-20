@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const tourRouter = require('./routes/tour.route');
 require('dotenv').config()
 
-
 app.use(express.json())
 main().catch(err => console.log("Error: ", err));
 

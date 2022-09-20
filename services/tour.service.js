@@ -6,8 +6,10 @@ module.exports.postTourService = async (data) => {
     return result;
 }
 module.exports.getToursService = async (queries) => {
+    const totalTours = await tourModel.find().count();
+    const totalPages = Math.ceil(totalTours / queries.limit)
     const result = await tourModel.find().select(queries.selectBy).sort(queries.sortBy).skip(queries.limit * (queries.page - 1)).limit(queries.limit);
-    return result;
+    return { totalTours, totalPages, result };
 }
 module.exports.getTourByIdService = async (id) => {
     await tourModel.updateOne({ _id: id }, { $inc: { viewCount: 1 } })

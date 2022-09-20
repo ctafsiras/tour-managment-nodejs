@@ -1,7 +1,6 @@
 const { postTourService, getToursService, getTourByIdService, patchTourByIdService, getTrendingTourService, getCheapestTourService } = require("../services/tour.service")
 
 module.exports.postTourController = async (req, res) => {
-    console.log(req.body)
     try {
         const result = await postTourService(req.body);
         res.send({ status: "Success", data: result })
